@@ -21,6 +21,7 @@ function ListAllPastes(): JSX.Element {
           method: "DELETE",
         }
       );
+      console.log(response.json())
     } catch (error) {
       console.log(error);
     }
