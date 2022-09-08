@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 function AddPaste(): JSX.Element {
+
   const [snippet, setSnippet] = useState("");
   const [owner, setOwner] = useState("");
 
+  // submit Paste onClick handler
   const submitPaste = async () => {
     try {
       const body = { snippet, owner };
