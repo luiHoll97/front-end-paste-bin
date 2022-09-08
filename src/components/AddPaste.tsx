@@ -16,7 +16,7 @@ function AddPaste(): JSX.Element {
           body: JSON.stringify(body),
         }
       );
-      console.log(addPaste.json())
+      console.log(addPaste.json());
       setSnippet("");
       setOwner("");
       console.log(JSON.stringify(body));
