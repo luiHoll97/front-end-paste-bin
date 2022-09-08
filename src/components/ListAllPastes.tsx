@@ -13,6 +13,19 @@ function ListAllPastes(): JSX.Element {
     getAllPastes();
   }, []);
 
+  const deletePaste = async (id: number) => {
+    try {
+      const response = await fetch(
+        `https://a2-paste-bin.herokuapp.com/pastes/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   async function getAllPastes() {
     try {
       const response = await fetch("https://a2-paste-bin.herokuapp.com/pastes");
@@ -25,14 +38,23 @@ function ListAllPastes(): JSX.Element {
 
   const allPastesList = allPastes.map((paste: IPaste) => {
     return (
-      <ul key={paste.paste_id}>
-        <li>{paste.snippet}</li>
-        <li>{paste.owner}</li>
-      </ul>
+      <div key={paste.paste_id} className="snippetBlock">
+        <h3 className="snippetHeader">owner:</h3>
+        <p>{paste.owner}</p>
+        <h3 className="snippetHeader">snippet:</h3>
+        <p>{paste.snippet}</p>
+        <button onClick={() => deletePaste(paste.paste_id)}>delete</button>
+        <button>edit</button>
+      </div>
     );
   });
 
-  return <>{allPastesList}</>;
+  return (
+    <>
+      <h2>Pastes</h2>
+      {allPastesList}
+    </>
+  );
 }
 
 export default ListAllPastes;
