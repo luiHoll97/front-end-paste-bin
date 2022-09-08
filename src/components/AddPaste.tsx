@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function AddPaste(): JSX.Element {
-
   const [snippet, setSnippet] = useState("");
   const [owner, setOwner] = useState("");
 
