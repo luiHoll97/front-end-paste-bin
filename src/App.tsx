@@ -10,7 +10,7 @@ function App(): JSX.Element {
 
   return (
     <>
-      <h1>PASTEBIN TEST </h1>
+      <h1>PASTEBIN</h1>
 
       <AddPaste
         internalTodos={internalTodos}
