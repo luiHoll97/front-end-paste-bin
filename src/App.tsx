@@ -5,15 +5,20 @@ import AddPaste from "./components/AddPaste";
 import "./app.css";
 
 function App(): JSX.Element {
-
-  const [internalTodos, setInternalTodo] = useState<any>([])
+  const [internalTodos, setInternalTodo] = useState<any>([]);
 
   return (
     <>
       <h1>PASTEBIN TEST </h1>
 
-      <AddPaste internalTodos={internalTodos} setInternalTodo={setInternalTodo} />
-      <ListAllPastes internalTodos={internalTodos} setInternalTodo={setInternalTodo} />
+      <AddPaste
+        internalTodos={internalTodos}
+        setInternalTodo={setInternalTodo}
+      />
+      <ListAllPastes
+        internalTodos={internalTodos}
+        setInternalTodo={setInternalTodo}
+      />
     </>
   );
 }

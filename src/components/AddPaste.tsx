@@ -1,37 +1,35 @@
 import { useState } from "react";
 
 interface todoHooks {
-  internalTodos: any[]
-  setInternalTodo: React.Dispatch<React.SetStateAction<any[]>>
+  internalTodos: any[];
+  setInternalTodo: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-function AddPaste({internalTodos, setInternalTodo}: todoHooks): JSX.Element {
+function AddPaste({ internalTodos, setInternalTodo }: todoHooks): JSX.Element {
   const [snippet, setSnippet] = useState("");
   const [owner, setOwner] = useState("");
 
-const test = "test"
   // submit Paste onClick handler
   const submitPaste = async () => {
     try {
       if (snippet !== "" && owner !== "") {
-      const posted = new Date()
-      const body = { snippet, owner, posted };
-      const addPaste = await fetch(
-        `https://a2-paste-bin.herokuapp.com/pastes`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
-      console.log(addPaste.json());
-      setInternalTodo([...internalTodos,body])
-      setSnippet("");
-      setOwner("");
-      console.log(JSON.stringify(body));
-      }
-      else {
-        alert("Enter all your details! 😊")
+        const posted = new Date();
+        const body = { snippet, owner, posted };
+        const addPaste = await fetch(
+          `https://a2-paste-bin.herokuapp.com/pastes`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          }
+        );
+        console.log(addPaste.json());
+        setInternalTodo([...internalTodos, body]);
+        setSnippet("");
+        setOwner("");
+        console.log(JSON.stringify(body));
+      } else {
+        alert("Enter all your details! 😊");
       }
     } catch (error) {
       console.log(error);
