@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ShowMoreText from "react-show-more-text";
+import InternalHook from "../utils/InternalHook"
 
 interface IPaste {
   paste_id: number;
@@ -9,8 +10,8 @@ interface IPaste {
 }
 
 interface todoHooks {
-  internalTodos: any[];
-  setInternalTodo: React.Dispatch<React.SetStateAction<any[]>>;
+  internalTodos: InternalHook[];
+  setInternalTodo: React.Dispatch<React.SetStateAction<InternalHook[]>>;
 }
 
 const ListAllPastes = ({
@@ -21,11 +22,14 @@ const ListAllPastes = ({
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    getAllPastes();
+
+    getAllPastes()
+    // will set allpastes
   }, [internalTodos]);
 
   useEffect(() => {
-    setInternalTodo(allPastes);
+    setInternalTodo(allPastes)
+    //will set all pastes to todos
   }, [allPastes]);
 
   const deletePaste = async (id: number) => {

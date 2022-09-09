@@ -1,8 +1,9 @@
 import { useState } from "react";
+import InternalHook from "../utils/InternalHook"
 
 interface todoHooks {
-  internalTodos: any[];
-  setInternalTodo: React.Dispatch<React.SetStateAction<any[]>>;
+  internalTodos: InternalHook[];
+  setInternalTodo: React.Dispatch<React.SetStateAction<InternalHook[]>>;
 }
 
 function AddPaste({ internalTodos, setInternalTodo }: todoHooks): JSX.Element {
