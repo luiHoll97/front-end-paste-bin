@@ -1,17 +1,49 @@
 import { useEffect, useState } from "react";
+import ShowMoreText from "react-show-more-text";
+import InternalHook from "../utils/InternalHook";
 
 interface IPaste {
   paste_id: number;
   snippet: string;
   owner: string;
+  posted: string;
 }
 
-function ListAllPastes(): JSX.Element {
+interface todoHooks {
+  internalTodos: InternalHook[];
+  setInternalTodo: React.Dispatch<React.SetStateAction<InternalHook[]>>;
+}
+
+const ListAllPastes = ({
+  internalTodos,
+  setInternalTodo,
+}: todoHooks): JSX.Element => {
   const [allPastes, setAllPastes] = useState<IPaste[]>([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     getAllPastes();
-  }, []);
+    // will set allpastes
+  }, [internalTodos]);
+
+  useEffect(() => {
+    setInternalTodo(allPastes);
+    //will set all pastes to todos
+  }, [allPastes, setInternalTodo]);
+
+  const deletePaste = async (id: number) => {
+    try {
+      const response = await fetch(
+        `https://a2-paste-bin.herokuapp.com/pastes/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      console.log(response.json());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   async function getAllPastes() {
     try {
@@ -23,16 +55,46 @@ function ListAllPastes(): JSX.Element {
     }
   }
 
+  const formatDate = (date: string): string => {
+    const firstString = date.substring(0, date.indexOf("T"));
+    const secondString = date.substring(
+      date.indexOf("T") + 1,
+      date.indexOf(".")
+    );
+    return firstString + ", " + secondString;
+  };
+
   const allPastesList = allPastes.map((paste: IPaste) => {
     return (
-      <ul key={paste.paste_id}>
-        <li>{paste.snippet}</li>
-        <li>{paste.owner}</li>
-      </ul>
+      <div key={paste.paste_id} className="snippetBlock">
+        <h3 className="snippetHeader">owner:</h3>
+        <p>{paste.owner}</p>
+        <h3 className="snippetHeader">snippet:</h3>
+        <ShowMoreText
+          /* Default options */
+          lines={5}
+          more="Show more"
+          less="...Show less"
+          anchorClass="oooeeer"
+          onClick={() => setShow(!show)}
+          expanded={show}
+          width={0}
+        >
+          {paste.snippet}
+        </ShowMoreText>
+        <p>{formatDate(paste.posted)}</p>
+        <button onClick={() => deletePaste(paste.paste_id)}>delete</button>
+        <button>edit</button>
+      </div>
     );
   });
 
-  return <>{allPastesList}</>;
-}
+  return (
+    <>
+      <h2>Pastes</h2>
+      {allPastesList}
+    </>
+  );
+};
 
 export default ListAllPastes;

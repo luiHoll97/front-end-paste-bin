@@ -1,0 +1,20 @@
+* {
+  background-color: antiquewhite;
+}
+
+.snippetBlock {
+  width: 45%;
+  display: block;
+  border: 6px solid;
+  border-color: magenta magenta yellow magenta;
+  border-radius: 10px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.snippetHeader {
+  width: 50px;
+  display: block;
+  margin: auto;
+  color: blue;
+}
