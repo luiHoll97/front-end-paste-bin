@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ListAllPastes from "./components/ListAllPastes"
+import ListAllPastes from "./components/ListAllPastes";
 import AddPaste from "./components/AddPaste";
 import InternalHook from "./utils/InternalHook";
 
