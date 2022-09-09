@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InternalHook from "../utils/InternalHook"
+import InternalHook from "../utils/InternalHook";
 
 interface todoHooks {
   internalTodos: InternalHook[];

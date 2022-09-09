@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ShowMoreText from "react-show-more-text";
-import InternalHook from "../utils/InternalHook"
+import InternalHook from "../utils/InternalHook";
 
 interface IPaste {
   paste_id: number;
@@ -22,13 +22,12 @@ const ListAllPastes = ({
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-
-    getAllPastes()
+    getAllPastes();
     // will set allpastes
   }, [internalTodos]);
 
   useEffect(() => {
-    setInternalTodo(allPastes)
+    setInternalTodo(allPastes);
     //will set all pastes to todos
   }, [allPastes]);
 
