@@ -29,7 +29,7 @@ const ListAllPastes = ({
   useEffect(() => {
     setInternalTodo(allPastes);
     //will set all pastes to todos
-  }, [allPastes]);
+  }, [allPastes, setInternalTodo]);
 
   const deletePaste = async (id: number) => {
     try {
